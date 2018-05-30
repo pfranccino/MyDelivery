@@ -13,6 +13,7 @@ class JSONParser{
 
         with(userJSON){
             val user = Users(
+
                              getString("first_name"),
                              getString("last_name"),
                              getString("email"),
