@@ -1,24 +1,23 @@
 package com.example.pfranccino.mydelivery.API
 
 import android.util.JsonToken
-import com.example.pfranccino.mydelivery.Models.Users
+import com.example.pfranccino.mydelivery.Models.User
+
 import org.json.JSONObject
 
 
 class JSONParser{
 
-    fun getUser(response : JSONObject): Users {
+    fun getUser(response : JSONObject): User {
 
-        val userJSON  = response.getJSONObject("user")
+        val userJSON  = response
 
         with(userJSON){
-            val user = Users(
-
-                             getString("first_name"),
-                             getString("last_name"),
-                             getString("email"),
-                             getString("password"),
-                             getString("password_confirmation"))
+                      val user = User(  getString("success"),
+                                        getString("token"),
+                                        getJSONObject("user").getString("first_name"),
+                                        getJSONObject("user").getString("last_name"),
+                                        getJSONObject("user").getString("email"))
 
                     return user
 
