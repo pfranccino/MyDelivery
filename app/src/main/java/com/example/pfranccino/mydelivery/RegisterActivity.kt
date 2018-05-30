@@ -1,5 +1,7 @@
 package com.example.pfranccino.mydelivery
 
+import android.app.Activity
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -24,6 +26,8 @@ class RegisterActivity : AppCompatActivity() {
 
         val json  = JSONObject()
 
+
+        imageButton.setOnClickListener { starActivity(this,MainActivity::class.java)  }
 
         createButton.setOnClickListener {
 
@@ -68,5 +72,10 @@ class RegisterActivity : AppCompatActivity() {
 
 
 
+    }
+
+    fun starActivity(activity : Activity, nexActivity: Class<*>){
+        val intent  = Intent(activity,nexActivity)
+        activity.startActivity(intent)
     }
 }

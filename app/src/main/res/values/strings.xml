@@ -2,9 +2,4 @@
     <string name="app_name">MyDelivery</string>
     <string name="loginButton">Inciar sesion</string>
     <string name="registerButton">Crear cuenta</string>
-    <string name="contraseña">Confirmar Contraseña</string>
-    <string name="contraseña1">Contraseña</string>
-    <string name="name">Nombre</string>
-    <string name="lastName">Apellido</string>
-    <string name="email">Email</string>
 </resources>

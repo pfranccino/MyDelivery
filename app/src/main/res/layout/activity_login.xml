@@ -4,60 +4,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#faaf41"
     tools:context=".LoginActivity"
-
-    tools:layout_editor_absoluteY="81dp">
+    tools:layout_editor_absoluteY="25dp">
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginBottom="76dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="105dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
         android:backgroundTint="#383838"
         android:text="@string/loginButton"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordText" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/passwordText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="81dp"
+        android:layout_marginBottom="44dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
+        android:drawablePadding="20dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Contraseña"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/loginButton"
-        app:layout_constraintStart_toStartOf="@+id/emailText"
+        android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailText" />
 
     <EditText
         android:id="@+id/emailText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="125dp"
-        android:layout_marginTop="138dp"
+        android:layout_marginBottom="62dp"
+        android:layout_marginEnd="50dp"
+
+        android:layout_marginStart="50dp"
+        android:drawableLeft="@drawable/ic_email_black_24dp"
+        android:drawablePadding="20dp"
         android:ems="10"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/passwordText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginBottom="171dp"
-        android:layout_marginEnd="53dp"
-        android:layout_marginStart="53dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="26dp"
+        android:layout_marginEnd="12dp"
+        android:text="¿ Olvidaste tu contraseña ?"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/loginButton"
+        app:layout_constraintEnd_toEndOf="@+id/loginButton"
+        app:layout_constraintTop_toBottomOf="@+id/passwordText" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="86dp"
+        android:layout_marginTop="42dp"
+        android:text="MyDelivery"
+        android:textAllCaps="true"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/emailText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailText" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

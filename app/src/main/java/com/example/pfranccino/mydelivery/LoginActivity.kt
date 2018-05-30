@@ -4,16 +4,11 @@ import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import com.android.volley.AuthFailureError
-import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.pfranccino.mydelivery.API.JSONParser
-import com.example.pfranccino.mydelivery.Models.User
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
 
@@ -40,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
             val que   = Volley.newRequestQueue(this@LoginActivity)
             val req = jsonObjectRequest(url, json, jsonp)
             que.add(req)
+
 
         }
 
