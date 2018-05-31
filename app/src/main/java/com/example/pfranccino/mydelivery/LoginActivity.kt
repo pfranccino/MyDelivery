@@ -67,8 +67,6 @@ class LoginActivity : AppCompatActivity() {
                 when (response.statusCode) {
                     422 -> {
 
-
-
                         val body = String(response.data)
 
                         val errorObject = JSONObject(body)
@@ -76,9 +74,14 @@ class LoginActivity : AppCompatActivity() {
 
                         val errors = errorObject.getJSONObject("errors")
 
+                        val keys = errors.keys()
+
+                        for(i in keys){
+
+                                Log.d("help",i)
+                        }
 
 
-                        Log.d("error login", errors.toString())
 
 
 
