@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -11,6 +13,10 @@ import com.android.volley.toolbox.Volley
 import com.example.pfranccino.mydelivery.API.Users.UserJsonParser
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
+import com.android.volley.toolbox.HttpHeaderParser
+import android.R.attr.data
+
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -48,16 +54,49 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun jsonObjectRequest(url: String, json: JSONObject, jsonp: UserJsonParser): JsonObjectRequest {
-        return object : JsonObjectRequest(Method.POST, url, json, Response.Listener {
-            response ->
+        return object : JsonObjectRequest(Method.POST, url, json, Response.Listener { response ->
             // Success
 
             jsonp.getUser(response)
             starActivity(this, MainActivity::class.java)
 
         },
-            Response.ErrorListener {
-                // Handle error
+            Response.ErrorListener { response ->
+
+                val response = response.networkResponse
+                when (response.statusCode) {
+                    422 -> {
+
+
+
+                        val body = String(response.data)
+
+                        val errorObject = JSONObject(body)
+
+
+                        val errors = errorObject.getJSONObject("errors")
+
+
+
+                        Log.d("error login", errors.toString())
+
+
+
+                    }
+
+
+                    400 -> {
+
+                    }
+
+                    else -> {
+
+                    }
+                }
+
+
+
+
 
             }) {
 

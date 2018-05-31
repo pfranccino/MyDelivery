@@ -10,7 +10,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.pfranccino.mydelivery.API.Users.JSONParser
+import com.example.pfranccino.mydelivery.API.Users.UserJsonParser
 import kotlinx.android.synthetic.main.activity_register.*
 import org.json.JSONObject
 
@@ -21,7 +21,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         val url = "https://floating-basin-93872.herokuapp.com/api/auth/register"
-        val JSONParser = JSONParser()
+        val JSONParser = UserJsonParser()
 
         val json  = JSONObject()
 
