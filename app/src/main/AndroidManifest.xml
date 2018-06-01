@@ -19,11 +19,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".RegisterActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+         <activity
+            android:name=".newActivity"
+            android:label="@string/title_activity_new"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

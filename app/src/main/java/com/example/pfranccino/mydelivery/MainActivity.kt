@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
 
         loginButton.setOnClickListener {
-            starActivity(this,LoginActivity::class.java)
+            starActivity(this,newActivity::class.java)
         }
 
         registerButton.setOnClickListener{
