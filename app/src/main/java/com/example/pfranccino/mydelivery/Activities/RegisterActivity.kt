@@ -1,4 +1,4 @@
-package com.example.pfranccino.mydelivery
+package com.example.pfranccino.mydelivery.Activities
 
 import android.app.Activity
 import android.content.Intent
@@ -11,6 +11,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.pfranccino.mydelivery.API.Users.UserJsonParser
+import com.example.pfranccino.mydelivery.R
 import kotlinx.android.synthetic.main.activity_register.*
 import org.json.JSONObject
 
@@ -20,13 +21,13 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val url = "https://floating-basin-93872.herokuapp.com/api/auth/register"
+        val url = "http://13.68.139.247/api/auth/register"
         val JSONParser = UserJsonParser()
 
         val json  = JSONObject()
 
 
-        imageButton.setOnClickListener { starActivity(this,MainActivity::class.java)  }
+        imageButton.setOnClickListener { starActivity(this, MainActivity::class.java)  }
 
         createButton.setOnClickListener {
 

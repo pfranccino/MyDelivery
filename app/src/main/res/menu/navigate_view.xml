@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+
+
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/menu_perfil"
+            android:title="Informacion personal" />
+
+
+        <item
+            android:id="@+id/menu_compras"
+            android:title="Mis compras" />
+
+        <item
+            android:id="@+id/menu_pagos"
+            android:title="Metodo de pagos" />
+
+        <item
+            android:id="@+id/menu_promocion"
+            android:title="Codigo promocional" />
+        <item
+            android:id="@+id/menu_factura"
+            android:title="Infomacion de factura" />
+
+        <item
+            android:id="@+id/menu_ayuda"
+            android:title="Obten ayuda" />
+
+        <item
+            android:id="@+id/menu_contacto"
+            android:title="Contacto" />
+    </group>
+
+
+
 </menu>

@@ -1,33 +1,35 @@
-package com.example.pfranccino.mydelivery
+package com.example.pfranccino.mydelivery.Activities
 
 import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.pfranccino.mydelivery.API.Users.UserJsonParser
+import com.example.pfranccino.mydelivery.Models.User
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
-import com.android.volley.toolbox.HttpHeaderParser
-import android.R.attr.data
-
+import com.example.pfranccino.mydelivery.R
 
 
 class LoginActivity : AppCompatActivity() {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val url = "https://floating-basin-93872.herokuapp.com/api/auth/login"
+        val url = "http://13.68.139.247/api/auth/login"
 
         val jsonp = UserJsonParser()
         val loginUserPostBody = JSONObject()
+        val objeto:User
+
 
 
 
@@ -57,9 +59,12 @@ class LoginActivity : AppCompatActivity() {
         return object : JsonObjectRequest(Method.POST, url, json, Response.Listener { response ->
             // Success
 
-            jsonp.getUser(response)
-            starActivity(this, MainActivity::class.java)
 
+
+            val objeto:User = jsonp.getUser(response)
+            launchNextScreen(this,objeto)
+            startActivity(Intent(this,newActivity::class.java).putExtra("objeto",objeto))
+            Log.d("objeto",objeto.first_name)
         },
             Response.ErrorListener { response ->
 
@@ -117,5 +122,11 @@ class LoginActivity : AppCompatActivity() {
     fun starActivity(activity : Activity, nexActivity: Class<*>){
         val intent  = Intent(activity,nexActivity)
         activity.startActivity(intent)
+    }
+
+    fun launchNextScreen(activity: Activity , user: User): Intent {
+        val intent = Intent(this, newActivity::class.java)
+        intent.putExtra("user", user)
+        return intent
     }
 }

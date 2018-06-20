@@ -1,9 +1,10 @@
-package com.example.pfranccino.mydelivery
+package com.example.pfranccino.mydelivery.Activities
 
 import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.pfranccino.mydelivery.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -14,11 +15,11 @@ class MainActivity : AppCompatActivity() {
 
 
         loginButton.setOnClickListener {
-            starActivity(this,newActivity::class.java)
+            starActivity(this, LoginActivity::class.java)
         }
 
         registerButton.setOnClickListener{
-            starActivity(this,RegisterActivity::class.java)
+            starActivity(this, RegisterActivity::class.java)
         }
 
     }
