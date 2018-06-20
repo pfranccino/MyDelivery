@@ -8,31 +8,39 @@
 
         <item
             android:id="@+id/menu_perfil"
-            android:title="Informacion personal" />
+            android:title="Informacion personal"
+            android:icon="@mipmap/ic_personfo"/>
 
 
         <item
             android:id="@+id/menu_compras"
-            android:title="Mis compras" />
+            android:title="Mis compras"
+            android:icon="@mipmap/ic_compras"
+            />
 
         <item
             android:id="@+id/menu_pagos"
-            android:title="Metodo de pagos" />
+            android:title="Metodo de pagos"
+            android:icon="@mipmap/ic_paymethod"/>
 
         <item
             android:id="@+id/menu_promocion"
-            android:title="Codigo promocional" />
+            android:title="Codigo promocional"
+            android:icon="@mipmap/ic_promo"/>
         <item
             android:id="@+id/menu_factura"
-            android:title="Infomacion de factura" />
+            android:title="Infomacion de factura"
+            android:icon="@mipmap/ic_balance"/>
 
         <item
             android:id="@+id/menu_ayuda"
-            android:title="Obten ayuda" />
+            android:title="Obten ayuda"
+            android:icon="@mipmap/ic_help"/>
 
         <item
             android:id="@+id/menu_contacto"
-            android:title="Contacto" />
+            android:title="Contacto"
+            android:icon="@mipmap/ic_contact"/>
     </group>
 
 
