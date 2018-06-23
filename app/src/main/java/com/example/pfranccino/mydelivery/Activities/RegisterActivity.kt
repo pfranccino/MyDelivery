@@ -27,9 +27,7 @@ class RegisterActivity : AppCompatActivity() {
         val json  = JSONObject()
 
 
-        imageButton.setOnClickListener { starActivity(this, MainActivity::class.java)  }
-
-        createButton.setOnClickListener {
+           createButton.setOnClickListener {
 
 
 
@@ -38,10 +36,6 @@ class RegisterActivity : AppCompatActivity() {
             json.put("email",emailTxt.text.toString())
             json.put("password",passTxt.text.toString())
             json.put("password_confirmation",pass2Txt.text.toString())
-
-
-            textView11.text = passTxt.text.toString()
-
 
 
             val que   = Volley.newRequestQueue(this@RegisterActivity)

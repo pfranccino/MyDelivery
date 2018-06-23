@@ -1,5 +1,6 @@
 package com.example.pfranccino.mydelivery.Activities
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -7,12 +8,10 @@ import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
-
 import com.example.pfranccino.mydelivery.Fragment.*
-
 import com.example.pfranccino.mydelivery.Models.User
 import com.example.pfranccino.mydelivery.R
 import kotlinx.android.synthetic.main.header.view.*
@@ -33,8 +32,7 @@ class newActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new)
 
-
-
+        sendData()
         loadName()
 
 
@@ -52,6 +50,7 @@ class newActivity : AppCompatActivity() {
 
             var gestorFragment = false
             var fragment: Fragment? = null
+
 
 
             when(item.itemId){
@@ -82,8 +81,7 @@ class newActivity : AppCompatActivity() {
                 }
                 R.id.menu_factura ->{
 
-                    fragment = billFragment()
-                    gestorFragment = true
+                    startActivity(Intent(this,MainActivity::class.java).putExtra("nada","nada"))
 
                 }
                 R.id.menu_ayuda ->{
@@ -95,7 +93,9 @@ class newActivity : AppCompatActivity() {
                 R.id.menu_contacto ->{
 
                     fragment = contactFragment()
+
                     gestorFragment = true
+
 
                 }
 
@@ -112,7 +112,9 @@ class newActivity : AppCompatActivity() {
     }
 
 
-    fun changeFragment(fragment: Fragment? ,item: MenuItem){
+    fun  changeFragment(fragment: Fragment? ,item: MenuItem){
+
+
         supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.content_frame,fragment)
@@ -123,8 +125,6 @@ class newActivity : AppCompatActivity() {
 
 
     }
-
-
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
         when(item!!.itemId){
@@ -140,16 +140,44 @@ class newActivity : AppCompatActivity() {
 
 
 
+
     private fun loadName() {
 
         // this method extracts data from the mainActivity
 
         val user = intent.getSerializableExtra("objeto") as User
-        val navigationView = findViewById(R.id.navigation_view) as NavigationView
+        val navigationView = findViewById<NavigationView>(R.id.navigation_view)
         val headerView = navigationView.getHeaderView(0)
         headerView.userName.text = "${ user.first_name } ${ user.last_name }"
 
         }
+
+
+    private fun sendData() {
+
+
+        val user = intent.getSerializableExtra("objeto")
+        val bundle = Bundle()
+
+         val myFragment = contactFragment()
+
+        bundle.putSerializable("objeto" ,user)
+        myFragment!!.arguments = bundle
+
+
+
+        supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.content_frame,myFragment)
+                .commit()
+
+
+
+
+        }
     }
+
+
+
 
 

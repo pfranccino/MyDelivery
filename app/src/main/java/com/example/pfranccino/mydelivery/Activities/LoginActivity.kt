@@ -119,10 +119,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun starActivity(activity : Activity, nexActivity: Class<*>){
-        val intent  = Intent(activity,nexActivity)
-        activity.startActivity(intent)
-    }
 
     fun launchNextScreen(activity: Activity , user: User): Intent {
         val intent = Intent(this, newActivity::class.java)
