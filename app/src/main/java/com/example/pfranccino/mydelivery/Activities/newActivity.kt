@@ -22,6 +22,7 @@ import com.example.pfranccino.mydelivery.R
 import kotlinx.android.synthetic.main.activity_new.*
 import kotlinx.android.synthetic.main.header.view.*
 import org.json.JSONArray
+import org.json.JSONObject
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -31,6 +32,10 @@ class newActivity : AppCompatActivity() {
     var drawerLayout : DrawerLayout? = null
     var navigationView : NavigationView? = null
     var cate: ArrayList<Category> =  ArrayList()
+
+    override fun onResume() {
+        super.onResume()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +75,24 @@ class newActivity : AppCompatActivity() {
         loadDataUser(user)
 
 
+        getCategories(object: VolleyCallback {
+            override fun onSuccess(result: JSONArray) {
+                Log.d("calling onSuccess", "1");
+                val par = CategoryJsonParser()
+
+                for (i in 0..(result.length() - 1)) {
+                    cate.add(par.getCategory(result.getJSONObject(i)))
+
+                    Log.d("iteracion", i.toString())
+                }
+            }
+        })
+
+
+
+
+        Log.d("tamaño", cate.size.toString())
+
 
 
         //Menu
@@ -105,6 +128,21 @@ class newActivity : AppCompatActivity() {
             true
         }
 
+    }
+
+    private fun getCategories(callback: VolleyCallback) {
+        val request = JsonArrayRequest(Request.Method.GET, "http://13.68.139.247/api/food_categories?business_id=eaa75bf2-250b-4856-97b8-3b5f65809e7a", null,
+
+
+        Response.Listener { response ->
+            Log.d("llamando getcategories", "asd")
+            callback.onSuccess(response)
+
+        },
+        Response.ErrorListener {
+
+
+        })
     }
 
     private fun jsonArrayRequest(url: String): JsonArrayRequest {
@@ -169,3 +207,7 @@ class newActivity : AppCompatActivity() {
 
 }
 
+
+interface VolleyCallback {
+    fun onSuccess(result : JSONArray)
+}
