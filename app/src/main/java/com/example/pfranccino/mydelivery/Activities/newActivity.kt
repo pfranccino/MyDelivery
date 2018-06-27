@@ -1,5 +1,6 @@
 package com.example.pfranccino.mydelivery.Activities
 
+import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -25,26 +26,36 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
 import kotlin.collections.ArrayList
+import org.json.JSONException
+import android.support.design.widget.Snackbar
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import android.widget.TextView
+import com.example.pfranccino.mydelivery.Activities.VolleyCallback
+import android.widget.Toast
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.StringRequest
+import com.example.pfranccino.mydelivery.Endpoints.EndPoints
+import com.example.pfranccino.mydelivery.Volley.VolleySingleton
 
 
 class newActivity : AppCompatActivity() {
 
     var drawerLayout : DrawerLayout? = null
     var navigationView : NavigationView? = null
-    var cate: ArrayList<Category> =  ArrayList()
+    var cate: MutableList<Category>? = null
+    private var listView: ListView? = null
 
     override fun onResume() {
         super.onResume()
+
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new)
-
-        //Prueba
-
-
-
 
         //Toolbar
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
@@ -54,19 +65,10 @@ class newActivity : AppCompatActivity() {
         //Activar menus y toolbar
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
+        listView = findViewById(R.id.categoriesList) as ListView
 
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
-
-        //Request
-        val queue: RequestQueue = Volley.newRequestQueue(this)
-        val url = "http://13.68.139.247/api/food_categories?business_id=eaa75bf2-250b-4856-97b8-3b5f65809e7a"
-        val arrayRequest = jsonArrayRequest(url)
-        queue.add(arrayRequest)
-
-
-
 
 
 
@@ -75,23 +77,7 @@ class newActivity : AppCompatActivity() {
         loadDataUser(user)
 
 
-        getCategories(object: VolleyCallback {
-            override fun onSuccess(result: JSONArray) {
-                Log.d("calling onSuccess", "1");
-                val par = CategoryJsonParser()
 
-                for (i in 0..(result.length() - 1)) {
-                    cate.add(par.getCategory(result.getJSONObject(i)))
-
-                    Log.d("iteracion", i.toString())
-                }
-            }
-        })
-
-
-
-
-        Log.d("tamaño", cate.size.toString())
 
 
 
@@ -128,50 +114,17 @@ class newActivity : AppCompatActivity() {
             true
         }
 
+
+
+        cate = mutableListOf<Category>()
+
+        loadArtists()
+
+
+
+
     }
 
-    private fun getCategories(callback: VolleyCallback) {
-        val request = JsonArrayRequest(Request.Method.GET, "http://13.68.139.247/api/food_categories?business_id=eaa75bf2-250b-4856-97b8-3b5f65809e7a", null,
-
-
-        Response.Listener { response ->
-            Log.d("llamando getcategories", "asd")
-            callback.onSuccess(response)
-
-        },
-        Response.ErrorListener {
-
-
-        })
-    }
-
-    private fun jsonArrayRequest(url: String): JsonArrayRequest {
-        val ArrayRequest = JsonArrayRequest(Request.Method.GET, url, null,
-                Response.Listener { response ->
-
-                    val par = CategoryJsonParser()
-
-
-                    for (i in 0..(response.length() - 1)) {
-
-                        cate.add(par.getCategory(response.getJSONObject(i)))
-
-
-
-                    }
-
-
-
-
-
-
-                },
-                Response.ErrorListener {
-
-
-                })
-        return ArrayRequest
-    }
 
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -199,6 +152,76 @@ class newActivity : AppCompatActivity() {
 
     }
 
+    fun loadCategories() {
+        val url = "http://13.68.139.247/api/food_categories?business_id=eaa75bf2-250b-4856-97b8-3b5f65809e7a"
+
+
+        getResponse(Request.Method.GET, url, JSONObject(), object: VolleyCallback {
+            override fun onSuccessResponse(result: String) {
+                Log.d("data", result.toString())
+
+                val response = JSONArray(result)
+
+                val par = CategoryJsonParser()
+
+
+                for (i in 0..(response.length() - 1)) {
+                    this@newActivity.cate!!.add(par.getCategory(response.getJSONObject(i)))
+
+                    Log.d("iteracion", i.toString())
+                }
+            }
+        })
+    }
+
+
+    fun getResponse(method: Int, url: String, jsonValue: JSONObject, callback: VolleyCallback) {
+        Log.d("call getresponse", "a")
+
+        val strreq = object : StringRequest(Request.Method.GET, url, Response.Listener { Response -> callback.onSuccessResponse(Response) }, Response.ErrorListener { e ->
+            e.printStackTrace()
+        }) {
+            // set headers
+            @Throws(com.android.volley.AuthFailureError::class)
+            override fun getHeaders(): Map<String, String> {
+                val params = HashMap<String, String>()
+                params["Authorization: Basic"] = "a"
+                return params
+            }
+        }
+
+        VolleySingleton.instance?.addToRequestQueue(strreq)
+    }
+
+
+    private fun loadArtists() {
+        val stringRequest = StringRequest(Request.Method.GET,
+                "http://13.68.139.247/api/food_categories?business_id=eaa75bf2-250b-4856-97b8-3b5f65809e7a",
+                Response.Listener<String> { s ->
+                    try {
+                        val obj = JSONArray(s)
+
+                        val par = CategoryJsonParser()
+
+
+                        for (i in 0..(obj.length() - 1)) {
+                            cate!!.add(par.getCategory(obj.getJSONObject(i)))
+
+                            val adapter = CategoryList(this@newActivity, cate!!)
+                            listView!!.adapter = adapter
+
+
+                            Log.d("iteracion", i.toString())
+                        }
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                    }
+                }, Response.ErrorListener { volleyError -> Toast.makeText(applicationContext, volleyError.message, Toast.LENGTH_LONG).show() })
+
+        val requestQueue = Volley.newRequestQueue(this)
+        requestQueue.add<String>(stringRequest)
+    }
+
 
 
     fun getArray(){}
@@ -208,6 +231,29 @@ class newActivity : AppCompatActivity() {
 }
 
 
+
+
+
+class CategoryList(private val context: Activity, internal var artists: List<Category>) : ArrayAdapter<Category>(context, R.layout.layout_list_category, artists) {
+
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val inflater = context.layoutInflater
+        val listViewItem = inflater.inflate(R.layout.layout_list_category, null, true)
+
+        val textViewName = listViewItem.findViewById(R.id.textViewName) as TextView
+        val textViewGenre = listViewItem.findViewById(R.id.textViewShort) as TextView
+
+        val artist = artists[position]
+        textViewName.text = artist.title
+        textViewGenre.text = artist.short_description
+
+        return listViewItem
+    }
+}
+
+
+
 interface VolleyCallback {
-    fun onSuccess(result : JSONArray)
+    fun onSuccessResponse(result: String)
 }

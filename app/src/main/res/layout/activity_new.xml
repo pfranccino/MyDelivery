@@ -23,68 +23,14 @@
         android:layout_height="match_parent">
 
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="88dp"
-            android:layout_marginTop="116dp"
-            android:contentDescription="Tacos"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/ic_help" />
-
-
-        <ImageButton
-            android:id="@+id/imageButton4"
-            android:layout_width="71dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="172dp"
-            android:layout_marginTop="276dp"
-            android:contentDescription="Churrascos"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/ic_help" />
-
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="252dp"
-            android:layout_marginTop="116dp"
-            android:contentDescription="Bebidas"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/ic_help" />
-
-        <TextView
-            android:id="@+id/txtCompleto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="6dp"
-            android:layout_marginTop="11dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
-
-        <TextView
-            android:id="@+id/txtPapaFrita"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="11dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton2"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
-
-        <TextView
-            android:id="@+id/txtBebidas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="1dp"
-            android:layout_marginTop="16dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton4"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
+        <ListView
+            android:id="@+id/categoriesList"
+            android:layout_width="367dp"
+            android:layout_height="492dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
 
