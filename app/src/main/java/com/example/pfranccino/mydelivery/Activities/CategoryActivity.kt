@@ -1,6 +1,5 @@
 package com.example.pfranccino.mydelivery.Activities
 
-import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -23,10 +22,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
 import org.json.JSONException
-import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.ListView
-import android.widget.TextView
 import android.widget.Toast
 import com.android.volley.toolbox.StringRequest
 import com.example.pfranccino.mydelivery.Activities.Adapters.CategoryList
@@ -34,7 +30,7 @@ import com.example.pfranccino.mydelivery.Interfaces.VolleyCallback
 import com.example.pfranccino.mydelivery.Volley.VolleySingleton
 
 
-class categoriesListActivity : AppCompatActivity() {
+class CategoryActivity : AppCompatActivity() {
 
     var drawerLayout : DrawerLayout? = null
     var navigationView : NavigationView? = null
@@ -178,7 +174,7 @@ class categoriesListActivity : AppCompatActivity() {
                         for (i in 0..(obj.length() - 1)) {
                             categoriesList!!.add(par.getCategory(obj.getJSONObject(i)))
 
-                            val adapter = CategoryList(this@categoriesListActivity, categoriesList!!)
+                            val adapter = CategoryList(this@CategoryActivity, categoriesList!!)
                             listView!!.adapter = adapter
 
 
