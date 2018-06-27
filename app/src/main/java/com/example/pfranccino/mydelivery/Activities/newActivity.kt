@@ -4,127 +4,138 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import com.example.pfranccino.mydelivery.Fragment.*
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.Volley
+import com.example.pfranccino.mydelivery.API.Users.CategoryJsonParser
+import com.example.pfranccino.mydelivery.Models.Category
 import com.example.pfranccino.mydelivery.Models.User
 import com.example.pfranccino.mydelivery.R
+import kotlinx.android.synthetic.main.activity_new.*
 import kotlinx.android.synthetic.main.header.view.*
+import org.json.JSONArray
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class newActivity : AppCompatActivity() {
 
-
-
-
-
-
     var drawerLayout : DrawerLayout? = null
     var navigationView : NavigationView? = null
-
+    var cate: ArrayList<Category> =  ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new)
 
-        sendData()
-        loadName()
+        //Prueba
 
 
+
+
+        //Toolbar
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
+
+        //Activar menus y toolbar
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
-
 
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
+
+        //Request
+        val queue: RequestQueue = Volley.newRequestQueue(this)
+        val url = "http://13.68.139.247/api/food_categories?business_id=eaa75bf2-250b-4856-97b8-3b5f65809e7a"
+        val arrayRequest = jsonArrayRequest(url)
+        queue.add(arrayRequest)
+
+
+
+
+
+
+        //Data usuario
+        val user = intent.getSerializableExtra("objeto") as User
+        loadDataUser(user)
+
+
+
+
+        //Menu
         navigationView!!.setNavigationItemSelectedListener { item ->
-
-            var gestorFragment = false
-            var fragment: Fragment? = null
-
 
 
             when(item.itemId){
 
                 R.id.menu_perfil ->{
 
-                    fragment = InfoFragment()
-                    gestorFragment = true
-
                 }
                 R.id.menu_compras ->{
-
-                    fragment = purchaseFragment()
-                    gestorFragment = true
 
                 }
                 R.id.menu_pagos->{
 
-                    fragment = payMethodFragment()
-                    gestorFragment = true
-
                 }
                 R.id.menu_promocion ->{
 
-                    fragment = discountFragment()
-                    gestorFragment = true
-
                 }
                 R.id.menu_factura ->{
-
-                    startActivity(Intent(this,MainActivity::class.java).putExtra("nada","nada"))
-
+                    startActivity(Intent(this,MainActivity::class.java).putExtra("user",user))
                 }
                 R.id.menu_ayuda ->{
-
-                    fragment = helpFragment()
-                    gestorFragment = true
 
                 }
                 R.id.menu_contacto ->{
 
-                    fragment = contactFragment()
-
-                    gestorFragment = true
-
-
                 }
 
             }
 
-            if(gestorFragment){
-
-                changeFragment(fragment, item)
-                drawerLayout!!.closeDrawers()
-            }
             true
         }
 
     }
 
+    private fun jsonArrayRequest(url: String): JsonArrayRequest {
+        val ArrayRequest = JsonArrayRequest(Request.Method.GET, url, null,
+                Response.Listener { response ->
 
-    fun  changeFragment(fragment: Fragment? ,item: MenuItem){
-
-
-        supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.content_frame,fragment)
-                .commit()
-
-        item.isChecked = true
-        supportActionBar!!.title = item.title
+                    val par = CategoryJsonParser()
 
 
+                    for (i in 0..(response.length() - 1)) {
+
+                        cate.add(par.getCategory(response.getJSONObject(i)))
+
+
+
+                    }
+
+
+
+
+
+
+                },
+                Response.ErrorListener {
+
+
+                })
+        return ArrayRequest
     }
+
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
         when(item!!.itemId){
@@ -141,43 +152,20 @@ class newActivity : AppCompatActivity() {
 
 
 
-    private fun loadName() {
+    private fun loadDataUser(user:User) {
 
         // this method extracts data from the mainActivity
-
-        val user = intent.getSerializableExtra("objeto") as User
         val navigationView = findViewById<NavigationView>(R.id.navigation_view)
         val headerView = navigationView.getHeaderView(0)
         headerView.userName.text = "${ user.first_name } ${ user.last_name }"
 
-        }
-
-
-    private fun sendData() {
-
-
-        val user = intent.getSerializableExtra("objeto")
-        val bundle = Bundle()
-
-         val myFragment = contactFragment()
-
-        bundle.putSerializable("objeto" ,user)
-        myFragment!!.arguments = bundle
-
-
-
-        supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.content_frame,myFragment)
-                .commit()
-
-
-
-
-        }
     }
 
 
 
+    fun getArray(){}
 
+
+
+}
 
