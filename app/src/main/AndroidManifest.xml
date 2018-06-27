@@ -32,6 +32,10 @@
         <activity
             android:name=".Activities.PruebaActivity"
             android:label="@string/title_activity_prueba"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activities.FoodDetailsActivity"
+            android:label="@string/title_activity_food_details"
             android:theme="@style/AppTheme"></activity>
     </application>
 

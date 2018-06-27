@@ -24,4 +24,9 @@ class CategoryList(private val context: Activity, internal var artists: List<Cat
 
         return listViewItem
     }
+
+
+    override fun getItem(position: Int): Category {
+        return getItem(position)
+    }
 }

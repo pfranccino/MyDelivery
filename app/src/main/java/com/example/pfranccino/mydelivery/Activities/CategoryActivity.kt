@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
@@ -37,9 +38,8 @@ class CategoryActivity : AppCompatActivity() {
     var categoriesList: MutableList<Category>? = null
     private var listView: ListView? = null
 
-    override fun onResume() {
-        super.onResume()
-    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -107,7 +107,19 @@ class CategoryActivity : AppCompatActivity() {
 
         loadCategories()
 
+        //Click Item
+        listView!!.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
 
+            Toast.makeText(this, categoriesList!!.get(position).title,Toast.LENGTH_SHORT).show()
+
+
+            when(categoriesList!!.get(position).title){
+
+                "Churrascos"->  startActivity(Intent(this,FoodDetailsActivity::class.java).putExtra("user",user))
+            }
+
+
+        }
 
     }
 
@@ -173,6 +185,7 @@ class CategoryActivity : AppCompatActivity() {
 
                         for (i in 0..(obj.length() - 1)) {
                             categoriesList!!.add(par.getCategory(obj.getJSONObject(i)))
+
 
                             val adapter = CategoryList(this@CategoryActivity, categoriesList!!)
                             listView!!.adapter = adapter
