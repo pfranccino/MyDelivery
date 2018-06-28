@@ -11,10 +11,15 @@ class FoodDetailsJsonParser{
         val detailFoodJson = response
 
         with (detailFoodJson) {
+            val detailsFoodImage = getJSONObject("images")
 
             val foodDetails = FoodDetails(
                     getString("title"),
-                    getString("short_description")
+                    getString("short_description"),
+                    getString("long_description"),
+                    detailsFoodImage.getString("small"),
+                    detailsFoodImage.getString("large")
+
             )
 
             return foodDetails

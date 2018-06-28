@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
 
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textVieTitleFood"
-        android:layout_width="0dp"
+        android:id="@+id/textViewTitleFood"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="17dp"
         android:text="Atif Aslam"
         android:textAlignment="center"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/textViewShortFood"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+         />
     <TextView
-        android:id="@+id/textViewShortFood"
+        android:id="@+id/textViewShortDescription"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="585dp"
-        android:text="Rock"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:text="Atif Aslam"
         android:textAlignment="center"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageViewFood"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15dp"
+        android:paddingVertical="15dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+
+
+</LinearLayout>

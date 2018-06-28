@@ -123,11 +123,13 @@ class FoodDetailsActivity : AppCompatActivity() {
 
 
     private fun loadFood(uuid    : String) {
+
         val stringRequest = StringRequest(Request.Method.GET,
                 "http://13.68.139.247/api/foods?category_id=${uuid}",
                 Response.Listener<String> { s ->
                     try {
                         val obj = JSONArray(s)
+
 
                         val par = FoodDetailsJsonParser()
 
