@@ -9,8 +9,23 @@
     <com.mapbox.mapboxsdk.maps.MapView android:layout_height="match_parent" android:layout_width="match_parent" android:id="@+id/mapView"
         mapbox:mapbox_styleUrl = "mapbox://styles/mapbox/streets-v10"
         mapbox:mapbox_cameraZoom = "12"
-    />
+    >
 
+    </com.mapbox.mapboxsdk.maps.MapView>
+
+    <Button
+        android:id="@+id/confirmAddressButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:background="@color/mapboxGrayLight"
+        android:enabled="false"
+        android:text="@string/confirm_direction"
+        mapbox:layout_constraintBottom_toBottomOf="parent"
+        mapbox:layout_constraintEnd_toEndOf="parent"
+        mapbox:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -18,4 +18,5 @@
 
 
     <string name="access_token">pk.eyJ1IjoiZ3VpbGxlcm1vMngzIiwiYSI6ImNqaXh6MW14YjA1MTYzd2xlcWFndWpnaWMifQ.rnpk0fqXCeKD7vRSuw2DZg</string>
+    <string name="confirm_direction">Confirmar Dirección</string>
 </resources>
