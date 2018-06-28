@@ -14,7 +14,7 @@
 
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar"/>
+            layout="@layout/toolbar" />
 
     </LinearLayout>
 
@@ -24,28 +24,27 @@
 
 
         <ListView
+
             android:id="@+id/categoriesList"
-            android:layout_width="367dp"
-            android:layout_height="492dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_width="320dp"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:layout_height="601dp"
+            android:layout_marginTop="57dp"
+            android:backgroundTint="#FAAF41"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
-
-
 
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/navigate_view"
         app:headerLayout="@layout/header"
-        android:layout_height="match_parent" />
-
-
-
+        app:menu="@menu/navigate_view" />
 
 
 </android.support.v4.widget.DrawerLayout>
