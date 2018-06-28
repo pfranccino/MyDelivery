@@ -63,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
 
             val objeto:User = jsonp.getUser(response)
             launchNextScreen(this,objeto)
-            startActivity(Intent(this,CategoryActivity::class.java).putExtra("objeto",objeto))
+            startActivity(Intent(this,MapActivity::class.java).putExtra("objeto",objeto))
             Log.d("objeto",objeto.first_name)
         },
             Response.ErrorListener { response ->

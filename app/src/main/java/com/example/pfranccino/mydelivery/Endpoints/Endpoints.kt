@@ -1,7 +1,7 @@
 package com.example.pfranccino.mydelivery.Endpoints
 
 object EndPoints {
-    private val URL_ROOT = "http://192.168.1.106/WebApi/v1/?op="
-    val URL_ADD_ARTIST = URL_ROOT + "addartist"
-    val URL_GET_ARTIST = URL_ROOT + "getartists"
+    private val URL_ROOT = "http://13.68.139.247/api/"
+    val URL_GET_CATEGORIES = URL_ROOT + "categories"
+    val URL_GET_FOODS_OF_CATEGORY = URL_ROOT + "foods"
 }

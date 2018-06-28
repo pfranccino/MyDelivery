@@ -29,7 +29,7 @@ import com.android.volley.toolbox.StringRequest
 import com.example.pfranccino.mydelivery.Activities.Adapters.CategoryList
 import com.example.pfranccino.mydelivery.Interfaces.VolleyCallback
 import com.example.pfranccino.mydelivery.Volley.VolleySingleton
-
+import com.example.pfranccino.mydelivery.Endpoints.EndPoints
 
 class CategoryActivity : AppCompatActivity() {
 
@@ -54,7 +54,7 @@ class CategoryActivity : AppCompatActivity() {
         //Enable menu y toolbar
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
-        listView = findViewById(R.id.categoriesList) as ListView
+        listView = findViewById<ListView>(R.id.categoriesList)
 
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -175,7 +175,7 @@ class CategoryActivity : AppCompatActivity() {
 
     private fun loadCategories() {
         val stringRequest = StringRequest(Request.Method.GET,
-                "http://13.68.139.247/api/food_categories?business_id=eaa75bf2-250b-4856-97b8-3b5f65809e7a",
+                EndPoints.URL_GET_CATEGORIES+"?business_id=eaa75bf2-250b-4856-97b8-3b5f65809e7a",
                 Response.Listener<String> { s ->
                     try {
                         val obj = JSONArray(s)
