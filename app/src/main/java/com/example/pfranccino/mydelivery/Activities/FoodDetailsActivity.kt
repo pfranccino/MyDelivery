@@ -22,10 +22,10 @@ import com.example.pfranccino.mydelivery.API.Users.FoodDetailsJsonParser
 import com.example.pfranccino.mydelivery.Activities.Adapters.CategoryList
 import com.example.pfranccino.mydelivery.Activities.Adapters.FoodList
 import com.example.pfranccino.mydelivery.Models.Category
-
 import com.example.pfranccino.mydelivery.Models.FoodDetails
 import com.example.pfranccino.mydelivery.Models.User
 import com.example.pfranccino.mydelivery.R
+import com.example.pfranccino.mydelivery.Endpoints.EndPoints
 import org.json.JSONArray
 import org.json.JSONException
 
@@ -54,7 +54,7 @@ class FoodDetailsActivity : AppCompatActivity() {
         //Enable menu y toolbar
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
-        listView = findViewById(R.id.foodList) as ListView
+        listView = findViewById<ListView>(R.id.foodList)
 
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -124,7 +124,7 @@ class FoodDetailsActivity : AppCompatActivity() {
 
     private fun loadFood(uuid : String) {
         val stringRequest = StringRequest(Request.Method.GET,
-                "http://13.68.139.247/api/foods?category_id=${uuid}",
+                EndPoints.URL_GET_FOODS_OF_CATEGORY+"?category_id=${uuid}",
                 Response.Listener<String> { s ->
                     try {
                         val obj = JSONArray(s)

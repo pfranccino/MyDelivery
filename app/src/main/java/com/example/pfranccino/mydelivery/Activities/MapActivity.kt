@@ -2,9 +2,12 @@ package com.example.pfranccino.mydelivery.Activities
 
 
 import android.location.Location
+import android.location.LocationManager
+import android.location.LocationProvider
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import android.widget.Button
 import com.example.pfranccino.mydelivery.R
 import com.mapbox.android.core.location.LocationEngine
@@ -25,7 +28,7 @@ import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerPlugin
 import com.mapbox.mapboxsdk.plugins.locationlayer.modes.CameraMode
 import com.mapbox.mapboxsdk.plugins.locationlayer.modes.RenderMode
 
-class MapActivity : AppCompatActivity(), PermissionsListener, LocationEngineListener, MapboxMap.OnMapClickListener {
+class MapActivity : AppCompatActivity(), PermissionsListener, LocationEngineListener {
 
 
     private lateinit var mapView : MapView
@@ -45,7 +48,7 @@ class MapActivity : AppCompatActivity(), PermissionsListener, LocationEngineList
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
 
-        Mapbox.getInstance(applicationContext, getString(R.string.access_token))
+        Mapbox.getInstance(this, getString(R.string.access_token))
         mapView = findViewById(R.id.mapView)
 
         confirmAddressButton = findViewById(R.id.confirmAddressButton)
@@ -67,6 +70,8 @@ class MapActivity : AppCompatActivity(), PermissionsListener, LocationEngineList
         if (PermissionsManager.areLocationPermissionsGranted(this)) {
             initializeLocationEngine()
             initializeLocationLayer()
+
+            Log.d("enable location", "True")
         } else {
             permissionManager = PermissionsManager(this)
             permissionManager.requestLocationPermissions(this)
@@ -120,6 +125,7 @@ class MapActivity : AppCompatActivity(), PermissionsListener, LocationEngineList
     }
 
     override fun onLocationChanged(location: Location?) {
+        Log.d("changed location", "true")
         location?.let {
             originLocation = location
             setCameraPosition(location)
@@ -139,8 +145,14 @@ class MapActivity : AppCompatActivity(), PermissionsListener, LocationEngineList
         super.onStart()
 
         if (PermissionsManager.areLocationPermissionsGranted(this)) {
+
             locationEngine?.requestLocationUpdates()
+
+
+
             locationLayerPlugin?.onStart()
+
+
         }
 
         mapView.onStart()
@@ -190,14 +202,14 @@ class MapActivity : AppCompatActivity(), PermissionsListener, LocationEngineList
     }
 
 
-    override fun onMapClick(point: LatLng) {
+    /*override fun onMapClick(point: LatLng) {
         destinationMarker = map.addMarker(MarkerOptions().position(point))
         destinationPosition = Point.fromLngLat(point.longitude, point.latitude)
         originPosition = Point.fromLngLat(originLocation.longitude, originLocation.latitude)
 
         confirmAddressButton.isEnabled = true
         confirmAddressButton.setBackgroundResource(R.color.mapboxBlue)
-    }
+    }*/
 
 
 }
