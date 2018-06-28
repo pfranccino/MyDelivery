@@ -112,16 +112,16 @@ class CategoryActivity : AppCompatActivity() {
 
             Toast.makeText(this, categoriesList!!.get(position).title,Toast.LENGTH_SHORT).show()
 
+            var category = categoriesList!!.get(position)
 
-            when(categoriesList!!.get(position).title){
+            startActivity(Intent(this,FoodDetailsActivity::class.java).putExtra("user",user).putExtra("category",category))
 
-                "Churrascos"->  startActivity(Intent(this,FoodDetailsActivity::class.java).putExtra("user",user))
-            }
+        }
 
 
         }
 
-    }
+
 
 
 

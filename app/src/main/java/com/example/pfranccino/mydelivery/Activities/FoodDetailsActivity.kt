@@ -39,6 +39,7 @@ class FoodDetailsActivity : AppCompatActivity() {
 
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food_details)
@@ -61,6 +62,10 @@ class FoodDetailsActivity : AppCompatActivity() {
 
         // Load user data
         val user = intent.getSerializableExtra("user") as User
+        val category = intent.getSerializableExtra("category") as Category
+
+        val uuid = category.uuid
+
         //loadDataUser(user)
 
         navigationView!!.setNavigationItemSelectedListener { item ->
@@ -100,7 +105,7 @@ class FoodDetailsActivity : AppCompatActivity() {
 
         foodList = mutableListOf<FoodDetails>()
 
-        loadFood()
+        loadFood(uuid)
 
     }
         override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -117,9 +122,9 @@ class FoodDetailsActivity : AppCompatActivity() {
         }
 
 
-    private fun loadFood() {
+    private fun loadFood(uuid : String) {
         val stringRequest = StringRequest(Request.Method.GET,
-                "http://13.68.139.247/api/foods?category_id=481e92f3-c144-44f0-bc07-c3a4fd1fe8cb",
+                "http://13.68.139.247/api/foods?category_id=${uuid}",
                 Response.Listener<String> { s ->
                     try {
                         val obj = JSONArray(s)
