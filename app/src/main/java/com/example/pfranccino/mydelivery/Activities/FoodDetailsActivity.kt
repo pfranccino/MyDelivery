@@ -108,7 +108,7 @@ class FoodDetailsActivity : AppCompatActivity() {
 
         }
 
-        rv!!.layoutManager = LinearLayoutManager(this,LinearLayout.VERTICAL,false)
+        rv!!.layoutManager = LinearLayoutManager(this,LinearLayout.HORIZONTAL,false)
 
         foodList = mutableListOf<FoodDetails>()
 

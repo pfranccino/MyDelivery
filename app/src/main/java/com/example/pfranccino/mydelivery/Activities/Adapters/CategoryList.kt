@@ -25,7 +25,7 @@ class CategoryList(private val context: Activity, internal var categories: List<
 
         val category = categories[position]
         textViewName.text = category.title
-        Glide.with(context).load(category.short_description).into(imageViewCategory)
+        Glide.with(context).load(category.image_large).into(imageViewCategory)
         return listViewItem
     }
 
