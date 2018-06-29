@@ -175,7 +175,7 @@ class CategoryActivity : AppCompatActivity() {
 
     private fun loadCategories() {
         val stringRequest = StringRequest(Request.Method.GET,
-                EndPoints.URL_GET_CATEGORIES+"?business_id=eaa75bf2-250b-4856-97b8-3b5f65809e7a",
+                "http://13.68.139.247/api/food_categories?business_id=eaa75bf2-250b-4856-97b8-3b5f65809e7a",
                 Response.Listener<String> { s ->
                     try {
                         val obj = JSONArray(s)

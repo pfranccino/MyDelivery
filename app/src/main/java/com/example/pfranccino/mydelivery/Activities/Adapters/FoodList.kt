@@ -20,12 +20,12 @@ class FoodList(private val context: Activity, internal var food: List<FoodDetail
 
         val textViewTitle = listViewItem.findViewById(R.id.textViewTitleFood) as TextView
         val textViewShort = listViewItem.findViewById(R.id.textViewShortDescription) as TextView
-        val imageViewFood  = listViewItem.findViewById(R.id.imageViewFood) as ImageView
+       // val imageViewFood  = listViewItem.findViewById(R.id.imageViewFood) as ImageView
 
         val food = food[position]
         textViewTitle.text = food.title
         textViewShort.text = food.short_description
-        Glide.with(context).load(food.image_large).into(imageViewFood)
+     //   Glide.with(context).load(food.image_large).into(imageViewFood)
 
         return listViewItem
     }

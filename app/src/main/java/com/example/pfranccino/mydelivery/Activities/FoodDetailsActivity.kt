@@ -7,10 +7,13 @@ import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.Toast
 import com.android.volley.Request
@@ -21,6 +24,7 @@ import com.example.pfranccino.mydelivery.API.Users.CategoryJsonParser
 import com.example.pfranccino.mydelivery.API.Users.FoodDetailsJsonParser
 import com.example.pfranccino.mydelivery.Activities.Adapters.CategoryList
 import com.example.pfranccino.mydelivery.Activities.Adapters.FoodList
+import com.example.pfranccino.mydelivery.Activities.Adapters.FoodRecycler
 import com.example.pfranccino.mydelivery.Models.Category
 import com.example.pfranccino.mydelivery.Models.FoodDetails
 import com.example.pfranccino.mydelivery.Models.User
@@ -36,6 +40,7 @@ class FoodDetailsActivity : AppCompatActivity() {
     var navigationView : NavigationView? = null
     var foodList: MutableList<FoodDetails>? = null
     private var listView: ListView? = null
+    private var rv : RecyclerView? = null
 
 
 
@@ -54,7 +59,8 @@ class FoodDetailsActivity : AppCompatActivity() {
         //Enable menu y toolbar
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
-        listView = findViewById<ListView>(R.id.foodList)
+        rv = findViewById(R.id.recycler)
+
 
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -102,8 +108,10 @@ class FoodDetailsActivity : AppCompatActivity() {
 
         }
 
+        rv!!.layoutManager = LinearLayoutManager(this,LinearLayout.VERTICAL,false)
 
         foodList = mutableListOf<FoodDetails>()
+
 
         loadFood(uuid)
 
@@ -125,7 +133,7 @@ class FoodDetailsActivity : AppCompatActivity() {
     private fun loadFood(uuid    : String) {
 
         val stringRequest = StringRequest(Request.Method.GET,
-                EndPoints.URL_GET_FOODS_OF_CATEGORY+"?category_id=${uuid}",
+                "http://13.68.139.247/api/foods?category_id=${uuid}",
                 Response.Listener<String> { s ->
                     try {
                         val obj = JSONArray(s)
@@ -138,9 +146,9 @@ class FoodDetailsActivity : AppCompatActivity() {
 
                             foodList!!.add(par.getFood(obj.getJSONObject(i)))
 
-                            val adapter = FoodList(this@FoodDetailsActivity, foodList!!)
+                            val adapter = FoodRecycler(this@FoodDetailsActivity,foodList!!)
 
-                            listView!!.adapter = adapter
+                            rv!!.adapter = adapter
 
 
 

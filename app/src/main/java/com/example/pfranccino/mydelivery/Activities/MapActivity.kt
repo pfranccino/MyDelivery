@@ -1,6 +1,7 @@
 package com.example.pfranccino.mydelivery.Activities
 
 
+import android.content.Intent
 import android.location.Location
 import android.location.LocationManager
 import android.location.LocationProvider
@@ -27,6 +28,8 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerPlugin
 import com.mapbox.mapboxsdk.plugins.locationlayer.modes.CameraMode
 import com.mapbox.mapboxsdk.plugins.locationlayer.modes.RenderMode
+import com.example.pfranccino.mydelivery.Models.User
+import kotlinx.android.synthetic.main.activity_new.*
 
 class MapActivity : AppCompatActivity(), PermissionsListener, LocationEngineListener {
 
@@ -44,9 +47,14 @@ class MapActivity : AppCompatActivity(), PermissionsListener, LocationEngineList
     private var locationLayerPlugin : LocationLayerPlugin? = null
     private var destinationMarker: Marker? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
+
+        val user = intent.getSerializableExtra("objeto") as User
+
+
 
         Mapbox.getInstance(this, getString(R.string.access_token))
         mapView = findViewById(R.id.mapView)
@@ -61,9 +69,12 @@ class MapActivity : AppCompatActivity(), PermissionsListener, LocationEngineList
             enableLocation()
         }
 
-        confirmAddressButton.setOnClickListener({
-            // Launch navigation UI
-        })
+        confirmAddressButton.setOnClickListener{
+
+
+
+
+        }
     }
 
     private fun enableLocation() {
