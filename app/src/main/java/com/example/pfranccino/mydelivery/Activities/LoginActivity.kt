@@ -62,9 +62,9 @@ class LoginActivity : AppCompatActivity() {
 
 
             val objeto:User = jsonp.getUser(response)
-            launchNextScreen(this,objeto)
+
             startActivity(Intent(this,CategoryActivity::class.java).putExtra("objeto",objeto))
-            Log.d("objeto",objeto.first_name)
+
         },
             Response.ErrorListener { response ->
 
@@ -86,10 +86,6 @@ class LoginActivity : AppCompatActivity() {
                                 Log.d("help",i)
                         }
 
-
-
-
-
                     }
 
 
@@ -101,8 +97,6 @@ class LoginActivity : AppCompatActivity() {
 
                     }
                 }
-
-
 
 
 
@@ -120,9 +114,4 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-    fun launchNextScreen(activity: Activity , user: User): Intent {
-        val intent = Intent(this, CategoryActivity::class.java)
-        intent.putExtra("user", user)
-        return intent
-    }
 }

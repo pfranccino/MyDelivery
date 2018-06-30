@@ -59,6 +59,7 @@ class MapActivity : AppCompatActivity(), PermissionsListener, LocationEngineList
         Mapbox.getInstance(this, getString(R.string.access_token))
         mapView = findViewById(R.id.mapView)
 
+
         confirmAddressButton = findViewById(R.id.confirmAddressButton)
 
         mapView.onCreate(savedInstanceState)
@@ -72,6 +73,7 @@ class MapActivity : AppCompatActivity(), PermissionsListener, LocationEngineList
         confirmAddressButton.setOnClickListener{
 
 
+            startActivity(Intent(this,CategoryActivity::class.java).putExtra("objeto",user))
 
 
         }
