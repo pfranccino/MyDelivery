@@ -54,7 +54,7 @@ class CategoryActivity : AppCompatActivity() {
         //Enable menu y toolbar
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
-        listView = findViewById<ListView>(R.id.categoriesList)
+        listView = findViewById(R.id.categoriesList)
 
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)

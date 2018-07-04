@@ -34,7 +34,7 @@ class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) :
             holder.txtShort?.text = food.get(position).short_description
             Glide.with(context).load(food.get(position).image_short).into(holder.imagefood)
 
-            holder.buttonAdd.setOnClickListener {
+           holder.buttonAdd.setOnClickListener {
 
                 val variable = holder.adapterPosition
 
@@ -71,6 +71,7 @@ class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) :
 
             }
 
+
         }
     }
 
@@ -83,7 +84,8 @@ class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) :
         val txtTitle = view.findViewById<TextView>(R.id.textViewTitleFood)
         val txtShort = view.findViewById<TextView>(R.id.textViewShortDescription)
         val imagefood = view.findViewById<ImageView>(R.id.imageViewFood)
-        val buttonAdd = view.findViewById<Button>(R.id.buttonAdd)
+        val buttonAdd = view.findViewById<Button>(R.id.imageButtonAdd)
+        val buttonDelete = view.findViewById<Button>(R.id.imageButtonDelete)
     }
 
 }

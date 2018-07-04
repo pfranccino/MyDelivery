@@ -77,24 +77,24 @@
     <EditText
         android:id="@+id/pass2Txt"
         android:layout_width="300dp"
-        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:drawableStart="@drawable/lock_outline_black_24dp"
+        android:layout_marginTop="10dp"
         android:drawablePadding="20dp"
+        android:drawableStart="@drawable/lock_outline_black_24dp"
         android:ems="10"
         android:hint="Confirmar contraseña"
-        android:inputType="textPassword"
-         />
+        android:inputType="textPassword" />
 
 
     <Button
         android:id="@+id/createButton"
-        android:layout_marginTop="40dp"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#383838"
         android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:autoText="false"
+        android:backgroundTint="#383838"
         android:text="@string/registerButton"
         android:textColor="@android:color/white"
         tools:layout_editor_absoluteX="143dp"

@@ -33,5 +33,6 @@ class MainActivity : AppCompatActivity() {
      fun starActivity(activity : Activity , nexActivity: Class<*>){
          val intent  = Intent(activity,nexActivity)
          activity.startActivity(intent)
+         activity.finish()
      }
 }

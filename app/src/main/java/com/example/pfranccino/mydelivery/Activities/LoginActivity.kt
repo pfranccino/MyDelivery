@@ -64,6 +64,7 @@ class LoginActivity : AppCompatActivity() {
             val objeto:User = jsonp.getUser(response)
 
             startActivity(Intent(this,CategoryActivity::class.java).putExtra("objeto",objeto))
+            finish()
 
         },
             Response.ErrorListener { response ->
@@ -84,6 +85,8 @@ class LoginActivity : AppCompatActivity() {
                         for(i in keys){
 
                                 Log.d("help",i)
+
+
                         }
 
                     }
