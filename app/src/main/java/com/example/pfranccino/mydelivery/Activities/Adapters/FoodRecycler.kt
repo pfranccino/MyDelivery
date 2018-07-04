@@ -9,9 +9,9 @@ import com.bumptech.glide.Glide
 import com.example.pfranccino.mydelivery.Cart.CartSingleton
 import com.example.pfranccino.mydelivery.Models.FoodDetails
 import com.example.pfranccino.mydelivery.R
-import android.R.attr.data
+import android.content.Intent
 import android.widget.*
-
+import com.example.pfranccino.mydelivery.Activities.SummaryOrderActivity
 
 
 class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) : RecyclerView.Adapter<FoodRecycler.ViewHolder>() {
@@ -117,6 +117,16 @@ class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) :
             }
 
 
+            holder.buttonOrder.setOnClickListener{
+
+               val  intent = Intent(context, SummaryOrderActivity::class.java)
+
+                context.startActivity(intent)
+
+
+            }
+
+
 
 
         }
@@ -134,6 +144,7 @@ class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) :
         val imagefood = view.findViewById<ImageView>(R.id.imageViewFood)
         val buttonAdd = view.findViewById<ImageButton>(R.id.imageButtonAdd)
         val buttonDelete = view.findViewById<ImageButton>(R.id.imageButtonDelete)
+        val buttonOrder = view.findViewById<Button>(R.id.buttonOrden)
     }
 
 }
