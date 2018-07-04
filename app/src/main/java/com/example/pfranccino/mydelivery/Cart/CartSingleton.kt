@@ -43,6 +43,8 @@ class CartSingleton : Application() {
 
             if (_cart!!.categoriesList.get(i).uuid == item.uuid) {
                 _cart!!.categoriesList.remove(_cart!!.categoriesList.get(i))
+
+                break;
             }
 
         }
