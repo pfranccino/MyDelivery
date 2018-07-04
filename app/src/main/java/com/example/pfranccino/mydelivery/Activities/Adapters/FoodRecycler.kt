@@ -27,6 +27,7 @@ class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) :
 
             holder.txtTitle?.text = food[position].title
             holder.txtShort?.text = food[position].short_description
+            holder.txtPrice?.text = "$ ${food[position].price}"
             Glide.with(context).load(food[position].image_large).into(holder.imagefood)
 
 
@@ -145,12 +146,15 @@ class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) :
 
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
         val txtTitle = view.findViewById<TextView>(R.id.textViewTitleFood)
         val txtShort = view.findViewById<TextView>(R.id.textViewShortDescription)
+        val txtPrice = view.findViewById<TextView>(R.id.textPrice)
         val imagefood = view.findViewById<ImageView>(R.id.imageViewFood)
         val buttonAdd = view.findViewById<ImageButton>(R.id.imageButtonAdd)
         val buttonDelete = view.findViewById<ImageButton>(R.id.imageButtonDelete)
         val buttonOrder = view.findViewById<Button>(R.id.buttonOrden)
+
     }
 
 }
