@@ -13,6 +13,7 @@ class FoodDetailsJsonParser{
             val detailsFoodImage = getJSONObject("images")
 
             return FoodDetails(
+                    getString("uuid"),
                     getString("title"),
                     getString("short_description"),
                     getString("long_description"),
