@@ -110,7 +110,6 @@ class CategoryActivity : AppCompatActivity() {
         //Click Item
         listView!!.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
 
-            Toast.makeText(this, categoriesList!!.get(position).title,Toast.LENGTH_SHORT).show()
 
             var category = categoriesList!!.get(position)
 

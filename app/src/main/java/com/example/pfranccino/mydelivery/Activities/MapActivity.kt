@@ -36,7 +36,7 @@ class MapActivity : AppCompatActivity(), PermissionsListener, LocationEngineList
 
     private lateinit var mapView : MapView
     private lateinit var map : MapboxMap
-    private lateinit var confirmAddressButton : Button
+    var confirmAddressButton : Button? = null
     private lateinit var permissionManager : PermissionsManager
     private lateinit var originLocation : Location
     private lateinit var originPosition : Point
@@ -56,6 +56,7 @@ class MapActivity : AppCompatActivity(), PermissionsListener, LocationEngineList
 
 
 
+
         Mapbox.getInstance(this, getString(R.string.access_token))
         mapView = findViewById(R.id.mapView)
 
@@ -70,13 +71,6 @@ class MapActivity : AppCompatActivity(), PermissionsListener, LocationEngineList
             enableLocation()
         }
 
-        confirmAddressButton.setOnClickListener{
-
-
-            startActivity(Intent(this,CategoryActivity::class.java).putExtra("objeto",user))
-
-
-        }
     }
 
     private fun enableLocation() {
@@ -214,15 +208,14 @@ class MapActivity : AppCompatActivity(), PermissionsListener, LocationEngineList
         mapView.onLowMemory()
     }
 
-
-    /*override fun onMapClick(point: LatLng) {
+    fun onMapClick(point: LatLng) {
         destinationMarker = map.addMarker(MarkerOptions().position(point))
         destinationPosition = Point.fromLngLat(point.longitude, point.latitude)
         originPosition = Point.fromLngLat(originLocation.longitude, originLocation.latitude)
 
-        confirmAddressButton.isEnabled = true
-        confirmAddressButton.setBackgroundResource(R.color.mapboxBlue)
-    }*/
+        confirmAddressButton!!.isEnabled = true
+        confirmAddressButton!!.setBackgroundResource(R.color.mapboxBlue)
+    }
 
 
 }

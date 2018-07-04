@@ -13,9 +13,7 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.ListView
-import android.widget.Toast
+import android.widget.*
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -30,6 +28,8 @@ import com.example.pfranccino.mydelivery.Models.FoodDetails
 import com.example.pfranccino.mydelivery.Models.User
 import com.example.pfranccino.mydelivery.R
 import com.example.pfranccino.mydelivery.Endpoints.EndPoints
+import kotlinx.android.synthetic.main.activity_food_details.*
+import kotlinx.android.synthetic.main.layout_list_food.*
 import org.json.JSONArray
 import org.json.JSONException
 
@@ -39,7 +39,7 @@ class FoodDetailsActivity : AppCompatActivity() {
     var drawerLayout : DrawerLayout? = null
     var navigationView : NavigationView? = null
     var foodList: MutableList<FoodDetails>? = null
-    private var listView: ListView? = null
+
     private var rv : RecyclerView? = null
 
 
@@ -53,23 +53,22 @@ class FoodDetailsActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
 
-
-
-
         //Enable menu y toolbar
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
         rv = findViewById(R.id.recycler)
 
 
+
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.title = " Comidas "
 
 
-        // Load user data
+
+        // Load data
         val user = intent.getSerializableExtra("user") as User
         val category = intent.getSerializableExtra("category") as Category
-
         val uuid = category.uuid
 
         //loadDataUser(user)
@@ -115,6 +114,11 @@ class FoodDetailsActivity : AppCompatActivity() {
 
         loadFood(uuid)
 
+
+
+
+
+
     }
         override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
@@ -130,29 +134,21 @@ class FoodDetailsActivity : AppCompatActivity() {
         }
 
 
-    private fun loadFood(uuid    : String) {
+    private fun loadFood(uuid:String) {
 
         val stringRequest = StringRequest(Request.Method.GET,
                 "http://13.68.139.247/api/foods?category_id=${uuid}",
                 Response.Listener<String> { s ->
                     try {
                         val obj = JSONArray(s)
-
-
                         val par = FoodDetailsJsonParser()
-
 
                         for (i in 0..(obj.length() - 1)) {
 
                             foodList!!.add(par.getFood(obj.getJSONObject(i)))
-
                             val adapter = FoodRecycler(this@FoodDetailsActivity,foodList!!)
-
                             rv!!.adapter = adapter
 
-
-
-                            Log.d("iteracion", i.toString())
                         }
                     } catch (e: JSONException) {
                         e.printStackTrace()

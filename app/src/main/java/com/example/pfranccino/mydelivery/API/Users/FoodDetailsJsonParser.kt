@@ -1,7 +1,6 @@
 package com.example.pfranccino.mydelivery.API.Users
 
 import com.example.pfranccino.mydelivery.Models.FoodDetails
-import com.example.pfranccino.mydelivery.Models.User
 import org.json.JSONObject
 
 class FoodDetailsJsonParser{
@@ -13,16 +12,15 @@ class FoodDetailsJsonParser{
         with (detailFoodJson) {
             val detailsFoodImage = getJSONObject("images")
 
-            val foodDetails = FoodDetails(
+            return FoodDetails(
                     getString("title"),
                     getString("short_description"),
                     getString("long_description"),
                     detailsFoodImage.getString("small"),
-                    detailsFoodImage.getString("large")
+                    detailsFoodImage.getString("large"),
+                    getInt("price")
 
             )
-
-            return foodDetails
         }
     }
 
