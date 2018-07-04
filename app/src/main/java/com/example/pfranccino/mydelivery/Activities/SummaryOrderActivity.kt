@@ -6,9 +6,14 @@ import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.View
 import android.widget.ListView
+import com.example.pfranccino.mydelivery.Activities.Adapters.CategoryList
+import com.example.pfranccino.mydelivery.Activities.Adapters.SummaryAdapter
+import com.example.pfranccino.mydelivery.Cart.CartSingleton
 import com.example.pfranccino.mydelivery.Models.Category
+import com.example.pfranccino.mydelivery.Models.FoodDetails
 import com.example.pfranccino.mydelivery.Models.User
 import com.example.pfranccino.mydelivery.R
 
@@ -17,6 +22,7 @@ class SummaryOrderActivity : AppCompatActivity() {
     var drawerLayout : DrawerLayout? = null
     var navigationView : NavigationView? = null
     private var listView: ListView? = null
+    var summaryList: MutableList<List<FoodDetails>>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +75,25 @@ class SummaryOrderActivity : AppCompatActivity() {
 
             true
         }
+
+        summaryList = mutableListOf<List<FoodDetails>>()
+
+        loadSummary()
+
+
+
+    }
+
+    fun loadSummary() {
+        val data= CartSingleton.instance!!.cart!!.categoriesList
+
+
+        val summary = data.groupBy { item ->
+            item.uuid
+        }
+
+
+        summary.forEach { (key, value) -> summaryList!!.add(value); val adapter = SummaryAdapter(this@SummaryOrderActivity, summaryList!!); listView!!.adapter = adapter }
 
 
 

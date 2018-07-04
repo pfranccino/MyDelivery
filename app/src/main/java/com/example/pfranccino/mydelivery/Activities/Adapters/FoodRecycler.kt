@@ -68,24 +68,7 @@ class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) :
 
 
 
-                /*Log.d("eliminamos", "true")
 
-
-                for (i in 0..data.size - 1) {
-                    var item =  data.get(i)
-
-
-                    CartSingleton.instance!!.removeItem(item)
-                }
-
-                Log.d("total", data.size.toString())*/
-
-
-                //CartSingleton.instance!!.cart!!.categoriesList!!.add(foodSelected)
-
-                //CartSingleton.instance!!.addItemToCart(foodSelected)
-
-                //Log.d("elemento", CartSingleton.instance.cart.categoriesList)
 
             }
 

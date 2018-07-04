@@ -118,7 +118,7 @@ class CategoryActivity : AppCompatActivity() {
         }
 
 
-        }
+    }
 
 
 
