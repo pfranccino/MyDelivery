@@ -14,9 +14,7 @@ import com.example.pfranccino.mydelivery.Models.Cart
 import com.example.pfranccino.mydelivery.Models.FoodDetails
 import com.example.pfranccino.mydelivery.R
 import android.R.attr.data
-
-
-
+import android.widget.ImageButton
 
 
 class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) : RecyclerView.Adapter<FoodRecycler.ViewHolder>() {
@@ -102,8 +100,8 @@ class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) :
         val txtTitle = view.findViewById<TextView>(R.id.textViewTitleFood)
         val txtShort = view.findViewById<TextView>(R.id.textViewShortDescription)
         val imagefood = view.findViewById<ImageView>(R.id.imageViewFood)
-        val buttonAdd = view.findViewById<Button>(R.id.imageButtonAdd)
-        val buttonDelete = view.findViewById<Button>(R.id.imageButtonDelete)
+        val buttonAdd = view.findViewById<ImageButton>(R.id.imageButtonAdd)
+        val buttonDelete = view.findViewById<ImageButton>(R.id.imageButtonDelete)
     }
 
 }
