@@ -37,6 +37,19 @@ class CartSingleton : Application() {
         return hasItem
     }
 
+    fun removeItem(item: FoodDetails) : Cart? {
+
+        for (i in 0.._cart!!.categoriesList.size - 1) {
+
+            if (_cart!!.categoriesList.get(i).uuid == item.uuid) {
+                _cart!!.categoriesList.remove(_cart!!.categoriesList.get(i))
+            }
+
+        }
+
+        return _cart
+    }
+
     fun addItem(item: FoodDetails): Boolean {
         val result = this._cart?.categoriesList!!.add(item)
 
