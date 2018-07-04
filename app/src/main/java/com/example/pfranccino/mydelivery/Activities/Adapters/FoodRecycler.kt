@@ -10,13 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.pfranccino.mydelivery.Cart.CartSingleton
-import com.example.pfranccino.mydelivery.Models.Cart
 import com.example.pfranccino.mydelivery.Models.FoodDetails
 import com.example.pfranccino.mydelivery.R
-import android.R.attr.data
-
-
-
+import android.widget.ImageButton
 
 
 class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) : RecyclerView.Adapter<FoodRecycler.ViewHolder>() {
@@ -31,8 +27,8 @@ class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) :
         food.let {
 
             holder.txtTitle?.text = food[position].title
-            holder.txtShort?.text = food.get(position).short_description
-            Glide.with(context).load(food.get(position).image_short).into(holder.imagefood)
+            holder.txtShort?.text = food[position].short_description
+            Glide.with(context).load(food[position].image_large).into(holder.imagefood)
 
            holder.buttonAdd.setOnClickListener {
 
@@ -98,12 +94,13 @@ class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) :
     }
 
 
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val txtTitle = view.findViewById<TextView>(R.id.textViewTitleFood)
         val txtShort = view.findViewById<TextView>(R.id.textViewShortDescription)
-        val imagefood = view.findViewById<ImageView>(R.id.imageViewFood)
-        val buttonAdd = view.findViewById<Button>(R.id.imageButtonAdd)
-        val buttonDelete = view.findViewById<Button>(R.id.imageButtonDelete)
+        val imagefood = view.findViewById<ImageView>(R.id.ImageFood)
+        val buttonAdd = view.findViewById<ImageButton>(R.id.imageButtonAdd)
+        val buttonDelete = view.findViewById<ImageButton>(R.id.imageButtonDelete)
     }
 
 }
