@@ -5,14 +5,13 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.pfranccino.mydelivery.Cart.CartSingleton
 import com.example.pfranccino.mydelivery.Models.FoodDetails
 import com.example.pfranccino.mydelivery.R
-import android.widget.ImageButton
+import android.R.attr.data
+import android.widget.*
+
 
 
 class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) : RecyclerView.Adapter<FoodRecycler.ViewHolder>() {
@@ -50,6 +49,11 @@ class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) :
                         Log.d("total", data.size.toString())
                     }
 
+                    if (CartSingleton.instance!!.hasProductInCart(foodSelected)) {
+                        holder.buttonDelete.visibility = View.VISIBLE
+
+                        Toast.makeText(context, foodSelected.title + " agregado al carrito de compras", Toast.LENGTH_SHORT).show()
+                    }
                 }
 
 
@@ -85,6 +89,35 @@ class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) :
 
             }
 
+            holder.buttonDelete.setOnClickListener {
+
+                val variable = holder.adapterPosition
+
+                val foodSelected = food[variable]
+
+
+                if (CartSingleton.instance != null) {
+                    if (CartSingleton.instance!!.hasProductInCart(foodSelected)) {
+
+                        CartSingleton.instance!!.removeItem(foodSelected)
+
+                        Log.d("eliminando prod", "delete")
+
+                        Toast.makeText(context, foodSelected.title + " quitado correctamente del carrito de compras", Toast.LENGTH_SHORT).show()
+
+                        if (!CartSingleton.instance!!.hasProductInCart(foodSelected)) {
+
+                            holder.buttonDelete.visibility = View.INVISIBLE
+
+                            Log.d("set visib", "zero")
+
+                        }
+                    }
+                }
+            }
+
+
+
 
         }
     }
@@ -98,7 +131,7 @@ class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) :
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val txtTitle = view.findViewById<TextView>(R.id.textViewTitleFood)
         val txtShort = view.findViewById<TextView>(R.id.textViewShortDescription)
-        val imagefood = view.findViewById<ImageView>(R.id.ImageFood)
+        val imagefood = view.findViewById<ImageView>(R.id.imageViewFood)
         val buttonAdd = view.findViewById<ImageButton>(R.id.imageButtonAdd)
         val buttonDelete = view.findViewById<ImageButton>(R.id.imageButtonDelete)
     }
