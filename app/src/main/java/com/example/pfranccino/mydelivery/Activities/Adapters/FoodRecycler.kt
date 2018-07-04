@@ -43,8 +43,6 @@ class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) :
                 val data= CartSingleton.instance!!.cart!!.categoriesList
 
                 if (CartSingleton.instance != null) {
-
-
                     val result = data.add(foodSelected)
 
                     if (data != null) {
@@ -60,6 +58,11 @@ class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) :
 
                 for (i in 0..data.size - 1) {
                     Log.d("elemento", data.get(i).title)
+
+
+                    var item =  data.get(i)
+
+                    Log.d("elemento existe", CartSingleton.instance!!.hasProductInCart(item).toString())
                 }
 
 

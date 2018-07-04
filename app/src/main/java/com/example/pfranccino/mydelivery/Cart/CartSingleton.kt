@@ -22,6 +22,21 @@ class CartSingleton : Application() {
             return _cart
         }
 
+
+    fun hasProductInCart(item : FoodDetails) : Boolean {
+        var hasItem = false
+
+        for (i in 0.._cart!!.categoriesList.size - 1) {
+
+            if (_cart!!.categoriesList.get(i).uuid == item.uuid) {
+                hasItem = true
+            }
+
+        }
+
+        return hasItem
+    }
+
     fun addItem(item: FoodDetails): Boolean {
         val result = this._cart?.categoriesList!!.add(item)
 
