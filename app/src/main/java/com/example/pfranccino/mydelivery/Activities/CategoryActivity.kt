@@ -58,6 +58,7 @@ class CategoryActivity : AppCompatActivity() {
 
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.title = " Categorias "
 
 
 
