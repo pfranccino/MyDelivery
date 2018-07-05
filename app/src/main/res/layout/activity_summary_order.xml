@@ -23,25 +23,56 @@
             android:layout_gravity="center"
             android:layout_marginBottom="30dp"
             android:layout_marginTop="30dp"
-            android:text="Orden de productos"
-             />
+            android:text="Resumen de productos"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="25dp" />
 
         <ListView
-
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center"
             android:id="@+id/summaryList"
             android:fillViewport="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="250dp"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
-            android:divider="#FAAF41"
+            android:divider="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="289dp" />
 
+        <TextView
+            android:id="@+id/txtTitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Total :"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/txtTotal1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:text="$ 0"
+            />
+
+        <Button
+            android:id="@+id/buttonPagar"
+            android:layout_gravity="center"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="PAGAR" />
+
+
     </LinearLayout>
+
 
 
 
@@ -53,6 +84,7 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
         app:menu="@menu/navigate_view" />
+
 
 
 </android.support.v4.widget.DrawerLayout>

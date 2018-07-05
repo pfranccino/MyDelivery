@@ -34,7 +34,7 @@ class SummaryAdapter(private val context: Activity, internal var food : MutableL
 
         textViewCount.text = food.size.toString()
 
-        textViewTotal.text = totalPriceInList.toString()
+        textViewTotal.text = "$ ${totalPriceInList.toString()}"
 
         //textViewTitle.text = food
 

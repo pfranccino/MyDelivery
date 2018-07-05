@@ -57,9 +57,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun jsonObjectRequest(url: String, json: JSONObject, jsonp: UserJsonParser): JsonObjectRequest {
         return object : JsonObjectRequest(Method.POST, url, json, Response.Listener { response ->
-            // Success
-
-
 
             val objeto:User = jsonp.getUser(response)
 

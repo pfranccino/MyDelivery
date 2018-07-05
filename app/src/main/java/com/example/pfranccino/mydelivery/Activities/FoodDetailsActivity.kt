@@ -29,6 +29,7 @@ import com.example.pfranccino.mydelivery.Models.User
 import com.example.pfranccino.mydelivery.R
 import com.example.pfranccino.mydelivery.Endpoints.EndPoints
 import kotlinx.android.synthetic.main.activity_food_details.*
+import kotlinx.android.synthetic.main.header.view.*
 import kotlinx.android.synthetic.main.layout_list_food.*
 import org.json.JSONArray
 import org.json.JSONException
@@ -67,7 +68,7 @@ class FoodDetailsActivity : AppCompatActivity() {
 
 
         // Load data
-        val user = intent.getSerializableExtra("user") as User
+        val user = intent.getSerializableExtra("objeto") as User
         val category = intent.getSerializableExtra("category") as Category
         val uuid = category.uuid
 
@@ -82,7 +83,7 @@ class FoodDetailsActivity : AppCompatActivity() {
 
                 }
                 R.id.menu_compras -> {
-
+                    startActivity(Intent(this, CategoryActivity::class.java).putExtra("objeto", user))
                 }
                 R.id.menu_pagos -> {
 
@@ -91,7 +92,7 @@ class FoodDetailsActivity : AppCompatActivity() {
 
                 }
                 R.id.menu_factura -> {
-                    startActivity(Intent(this, MainActivity::class.java).putExtra("user", user))
+
                 }
                 R.id.menu_ayuda -> {
 
@@ -113,6 +114,7 @@ class FoodDetailsActivity : AppCompatActivity() {
 
 
         loadFood(uuid)
+        loadDataUser(user)
 
 
 
@@ -162,9 +164,7 @@ class FoodDetailsActivity : AppCompatActivity() {
 
 
 
-       /* private fun loadDataUser(user:User) {
-
-            // this method extracts data from the mainActivity
+    private fun loadDataUser(user:User) {
 
             val navigationView = findViewById<NavigationView>(R.id.navigation_view)
 
@@ -173,6 +173,6 @@ class FoodDetailsActivity : AppCompatActivity() {
             headerView.userName.text = "${ user.first_name } ${ user.last_name }"
 
         }
-        */
+
 
 }

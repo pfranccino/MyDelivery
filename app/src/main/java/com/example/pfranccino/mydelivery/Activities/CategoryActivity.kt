@@ -78,6 +78,7 @@ class CategoryActivity : AppCompatActivity() {
 
                 }
                 R.id.menu_compras ->{
+                    startActivity(Intent(this,CategoryActivity::class.java).putExtra("objeto",user))
 
                 }
                 R.id.menu_pagos->{
@@ -87,7 +88,7 @@ class CategoryActivity : AppCompatActivity() {
 
                 }
                 R.id.menu_factura ->{
-                    startActivity(Intent(this,MainActivity::class.java).putExtra("user",user))
+
                 }
                 R.id.menu_ayuda ->{
 
@@ -114,7 +115,7 @@ class CategoryActivity : AppCompatActivity() {
 
             var category = categoriesList!!.get(position)
 
-            startActivity(Intent(this,FoodDetailsActivity::class.java).putExtra("user",user).putExtra("category",category))
+            startActivity(Intent(this,FoodDetailsActivity::class.java).putExtra("objeto",user).putExtra("category",category))
 
         }
 

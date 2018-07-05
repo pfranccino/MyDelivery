@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
 
         loginButton.setOnClickListener {
             starActivity(this, LoginActivity::class.java)
-            finish()
 
         }
 

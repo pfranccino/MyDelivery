@@ -12,6 +12,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.pfranccino.mydelivery.API.Users.UserJsonParser
+import com.example.pfranccino.mydelivery.Models.User
 import com.example.pfranccino.mydelivery.R
 import kotlinx.android.synthetic.main.activity_register.*
 import org.json.JSONObject
@@ -23,8 +24,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         val url = "http://13.68.139.247/api/auth/register"
-        val JSONParser = UserJsonParser()
-
+        val jsonp = UserJsonParser()
         val json  = JSONObject()
 
 
@@ -43,6 +43,8 @@ class RegisterActivity : AppCompatActivity() {
             val req = object : JsonObjectRequest(Request.Method.POST,url,json,
                     Response.Listener { response->
 
+                        val objeto: User = jsonp.getUser(response)
+                        startActivity(Intent(this,CategoryActivity::class.java).putExtra("objeto",objeto))
 
                     },
                     Response.ErrorListener {response->
@@ -80,7 +82,7 @@ class RegisterActivity : AppCompatActivity() {
 
                                     if(!pass2Txt.text.equals(passTxt.text)){
 
-                                        pass2Txt.error = "Deben coinicir contraseñas"
+                                        pass2Txt.error = "Deben coincidir contraseñas"
                                     }
 
                                     if(passTxt.length()< 6){
