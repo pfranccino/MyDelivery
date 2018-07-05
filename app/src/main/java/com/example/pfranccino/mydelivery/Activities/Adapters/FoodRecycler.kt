@@ -30,6 +30,29 @@ class FoodRecycler(private val context: Activity, var food: List<FoodDetails>) :
             holder.txtPrice?.text = "$ ${food[position].price}"
             Glide.with(context).load(food[position].image_large).into(holder.imagefood)
 
+
+            Log.d("calling holder", "hold")
+
+            val adapterPos = holder.adapterPosition
+
+            if (food.get(adapterPos) != null) {
+                val foodFocus = food[adapterPos]
+
+                if (CartSingleton.instance != null) {
+                    if (CartSingleton.instance!!.cart!!.categoriesList != null) {
+                        if (foodFocus != null) {
+                            if (CartSingleton.instance!!.hasProductInCart(foodFocus)) {
+                                holder.buttonDelete.visibility = View.VISIBLE
+                            } else {
+                                holder.buttonDelete.visibility = View.INVISIBLE
+                            }
+                        }
+                    }
+
+                }
+
+            }
+
            holder.buttonAdd.setOnClickListener {
 
                 val variable = holder.adapterPosition
