@@ -5,15 +5,17 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
     tools:context=".Activities.MainActivity"
     tools:layout_editor_absoluteY="25dp">
 
-    <Button
+
+    <info.hoang8f.widget.FButton
         android:id="@+id/registerButton"
         android:layout_width="129dp"
         android:layout_height="45dp"
         android:layout_marginBottom="19dp"
-        android:backgroundTint="#383838"
+        android:backgroundTint="@color/btnSignUp"
         android:text="@string/registerButton"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/loginButton"
@@ -22,12 +24,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <Button
+
+    <info.hoang8f.widget.FButton
         android:id="@+id/loginButton"
         android:layout_width="129dp"
         android:layout_height="45dp"
         android:layout_marginBottom="61dp"
-        android:backgroundTint="#383838"
+        android:backgroundTint="@color/btnSignIn"
         android:text="@string/loginButton"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/textView"
